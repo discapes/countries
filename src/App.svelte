@@ -8,23 +8,23 @@
     const map = new mapboxgl.Map({
       container: "map", // container ID
       style: "mapbox://styles/mapbox/streets-v11", // style URL
-      center: [-74.5, 40], // starting position [lng, lat]
-      zoom: 9, // starting zoom
+      // center: [-74.5, 40], // starting position [lng, lat]
+      // zoom: 9, // starting zoom
       projection: "globe", // display the map as a 3D globe
     });
     map.on("style.load", () => {
       map.setFog({}); // Set the default atmosphere style
     });
     map.on("load", function () {
-      map.addSource("states", {
+      map.addSource("countries", {
         type: "geojson",
-        data: "https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_110m_admin_1_states_provinces.geojson",
+        data: "/custom.geo.json",
       });
 
       map.addLayer({
         id: "state-fills",
         type: "fill",
-        source: "states",
+        source: "countries",
         layout: {},
         paint: {
           "fill-color": "#627BC1",
@@ -35,7 +35,7 @@
       map.addLayer({
         id: "state-borders",
         type: "line",
-        source: "states",
+        source: "countries",
         layout: {},
         paint: {
           "line-color": "#627BC1",
@@ -46,7 +46,7 @@
       map.addLayer({
         id: "state-fills-hover",
         type: "fill",
-        source: "states",
+        source: "countries",
         layout: {},
         paint: {
           "fill-color": "#627BC1",
